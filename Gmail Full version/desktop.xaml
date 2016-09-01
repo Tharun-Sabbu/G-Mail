@@ -1,0 +1,221 @@
+﻿<phone:PhoneApplicationPage
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+   xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+xmlns:myspin="clr-namespace:XAMLControls;assembly=XAMLControls"     
+    xmlns:Microsoft_Advertising_Mobile_UI="clr-namespace:Microsoft.Advertising.Mobile.UI;assembly=Microsoft.Advertising.Mobile.UI" 
+    x:Class="Gmail_Full_version.desktop"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="Portrait" Orientation="Portrait"
+    mc:Ignorable="d" d:DesignHeight="728" d:DesignWidth="480"
+    shell:SystemTray.IsVisible="False">
+	<phone:PhoneApplicationPage.ApplicationBar  >
+        <shell:ApplicationBar BackgroundColor="White" x:Name="appbar" ForegroundColor="Black" IsMenuEnabled="True">
+        	<shell:ApplicationBar.MenuItems>
+        		<shell:ApplicationBarMenuItem Text="slide on" Click="slideon_Click"/>
+        		<shell:ApplicationBarMenuItem Text="slide off" Click="slideoff_Click"/>
+        		<shell:ApplicationBarMenuItem Text="tips" Click="tips_Click"/>
+                <shell:ApplicationBarMenuItem Text="About" Click="ApplicationBarMenuItem_Click"/>
+        		<shell:ApplicationBarMenuItem Text="exit application" Click="exit_Click"/>
+        	</shell:ApplicationBar.MenuItems>
+			<shell:ApplicationBarIconButton IconUri="/icons/appbar.back.rest.png" Text="back" Click="back_Click"/>
+			
+			<shell:ApplicationBarIconButton IconUri="/icons/windows-32.png" Text="mob version" Click="mob_Click"/>
+            <shell:ApplicationBarIconButton IconUri="/icons/appbar.next.rest.png" Text="forward" Click="forward_Click"/>
+            <shell:ApplicationBarIconButton IconUri="/icons/appbar.favs.rest.png" Text="rate" Click="rate_Click"/>
+		</shell:ApplicationBar>
+	</phone:PhoneApplicationPage.ApplicationBar>
+
+    <!--LayoutRoot is the root grid where all page content is placed-->
+    <Grid x:Name="Container" Background="Black">
+        <toolkit:GestureService.GestureListener>
+            <toolkit:GestureListener DragDelta="GestureListener_OnDragDelta" DragCompleted="GestureListener_OnDragCompleted" />
+        </toolkit:GestureService.GestureListener>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid x:Name="SettingsPane" 
+              Background="#FFDFDFDF" 
+              Grid.Row="0"
+              Margin="-331,0,480,0" Grid.RowSpan="2" d:LayoutOverrides="VerticalMargin">
+            
+            <Grid.Projection >
+                <PlaneProjection />
+            </Grid.Projection>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+
+            <Button Content="Compose" Margin="39,0,57,-16" Background="#FFD54433" x:Name="compose" Click="compose_Click" VerticalAlignment="Bottom" BorderBrush="{StaticResource TransparentBrush}" Foreground="{StaticResource PhoneTextBoxSelectionForegroundBrush}" Height="72" />
+            <ListBox x:Name="listBox1"  Height="720" VerticalAlignment="Top" Grid.Row="1" Margin="0,8,0,0">
+                <StackPanel Orientation="Horizontal"  x:Name="inbox" Height="52"  Background="#FFDFDFDF" Width="331" Margin="0"  >
+
+
+                    <StackPanel Width="270">
+                        <TextBlock x:Name="inboxtext" Tap="inboxtext_Tap"  Height="48"  Foreground="Black" Text="              Inbox"  FontSize="26.667" FontFamily="Segoe WP Semibold" Margin="0,10,-59,0"/>
+                    </StackPanel>
+
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Height="52" x:Name="Starred"   Background="#FFDFDFDF" Width="331"  >
+
+
+                    <StackPanel Width="271">
+                        <TextBlock x:Name="Starredtext" Tap="Starredtext_Tap" Foreground="Black"  Text="             Starred" FontSize="26.667" FontFamily="Segoe WP Semibold" Margin="0,10,-59,0" Height="49"/>
+                    </StackPanel>
+                </StackPanel>
+                
+               
+                <StackPanel Orientation="Horizontal" Height="52" x:Name="sentmail" Background="#FFDFDFDF" Width="331"  >
+
+
+                    <StackPanel Width="273">
+                        <TextBlock x:Name="senttext" Tap="senttext_Tap"  Foreground="Black" Text="           Sent Mail" FontSize="26.667" FontFamily="Segoe WP Semibold" Margin="0,14,-57,0" Height="54"/>
+                    </StackPanel>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Height="52" x:Name="Drafts"  Background="#FFDFDFDF" Width="331"  >
+
+
+                    <StackPanel Width="272">
+                        <TextBlock x:Name="drafttext" Tap="drafttext_Tap"   Foreground="Black" Text="             Drafts" FontSize="26.667" FontFamily="Segoe WP Semibold" Margin="0,14,-57,0" Height="53"/>
+                    </StackPanel>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Height="52" x:Name="Allmail"  Background="#FFDFDFDF" Width="331"  >
+
+
+                    <StackPanel Width="270">
+                        <TextBlock x:Name="allmailtext" Tap="allmailtext_Tap"   Foreground="Black" Text="            All Mail" FontSize="26.667" FontFamily="Segoe WP Semibold" Margin="0,10,-60,0" d:LayoutOverrides="HorizontalAlignment" Height="57"/>
+                    </StackPanel>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Height="52" x:Name="spam"  Background="#FFDFDFDF" Width="331"  >
+
+
+                    <StackPanel Width="268">
+                        <TextBlock x:Name="spamtext"  Foreground="Black"  
+                			Text="             Spam" Tap="spamtext_Tap" FontSize="26.667" FontFamily="Segoe WP Semibold" Height="50" d:LayoutOverrides="HorizontalAlignment" Margin="0,6,-63,0"/>
+                    </StackPanel>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Height="52" x:Name="trash"  Background="#FFDFDFDF" Width="331"  >
+
+
+                    <StackPanel Width="266">
+                        <TextBlock x:Name="trashtext" Tap="trashtext_Tap" Foreground="Black"  Text="          Trash Mail"  FontSize="26.667" FontFamily="Segoe WP Semibold" Margin="0,14,-64,0" Height="54"/>
+                    </StackPanel>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Height="36" x:Name="space"  Background="#FFDFDFDF" Width="331"  >
+
+
+                    <StackPanel Width="270">
+                        <TextBlock x:Name="spacetext"   Text="      Labels :" Foreground="#FFD54433" FontSize="20.667" FontFamily="Segoe WP Semibold" Margin="0,10,-61,0" Height="36"/>
+                    </StackPanel>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Height="52" x:Name="receipts"  Background="#FFDFDFDF" Width="331"  >
+
+
+                    <StackPanel Width="270">
+                        <TextBlock x:Name="Receipts" Tap="Receipts_Tap"  Foreground="Black" Text="            Receipts" FontSize="26.667" FontFamily="Segoe WP Semibold" Margin="0,10,-61,0" Height="56"/>
+                    </StackPanel>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Height="52" x:Name="personal"  Background="#FFDFDFDF" Width="331"  >
+
+
+                    <StackPanel Width="270">
+                        <TextBlock x:Name="personaltext" Tap="personaltext_Tap"  Foreground="Black" Text="            Personal" FontSize="26.667" FontFamily="Segoe WP Semibold" Margin="0,10,-59,0" d:LayoutOverrides="HorizontalAlignment" Height="54"/>
+                    </StackPanel>
+                </StackPanel>
+                
+                <StackPanel Orientation="Horizontal" Height="52" x:Name="work"  Background="#FFDFDFDF" Width="331"  >
+
+
+                    <StackPanel Width="270">
+                        <TextBlock x:Name="Work" Tap="Work_Tap"  Foreground="Black" Text="              Work" FontSize="26.667" FontFamily="Segoe WP Semibold" Margin="0,10,-53,0" Height="54"/>
+                    </StackPanel>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Height="52" x:Name="travel"  Background="#FFDFDFDF" Width="331"  >
+
+
+                	<StackPanel Width="270">
+                		<TextBlock x:Name="Travel" Tap="Travel_Tap"  Foreground="Black" Text="             Travel" FontSize="26.667" FontFamily="Segoe WP Semibold" Margin="0,10,-59,0" Height="56"/>
+                	</StackPanel>
+                </StackPanel>
+                
+            </ListBox>
+            <TextBox Margin="17,-7,59,39" x:Name="search" TextWrapping="Wrap" d:LayoutOverrides="Height" Background="Gray" BorderBrush="{StaticResource TransparentBrush}" Foreground="{StaticResource PhoneTextBoxSelectionForegroundBrush}" GotFocus="search_focus"/>
+           
+            <Image HorizontalAlignment="Left"  Source="appbar.feature.search.rest.png" Stretch="Fill" Width="43" Margin="266,6,0,54" Height="44" />
+            <Button x:Name="searchbutton" Content="" HorizontalAlignment="Left" Margin="253,-4,0,0" RenderTransformOrigin="0.48,0.545" Height="65" VerticalAlignment="Top" Width="68" BorderBrush="Gray" Click="searchbutton_Click" BorderThickness="2" />
+        </Grid>
+        <!--TitlePanel contains the name of the application and page title-->
+
+        <!--ContentPanel - place additional content here-->
+        <Grid x:Name="ContentPanel" Background="Black" Grid.Row="1">
+            <InkPresenter Height="56" Margin="0,-1,0,0" VerticalAlignment="Top" Background="White" RenderTransformOrigin="0.28,0.452"/>
+            <phone:WebBrowser Margin="0,55,0,0"  x:Name="webBrowser1" Navigating="weBrowser1_Navigating" Navigated="weBrowser1_Navigated" IsScriptEnabled="True"  BorderBrush="{StaticResource TransparentBrush}" Background="{StaticResource TransparentBrush}" Foreground="{StaticResource TransparentBrush}" />
+            <TextBox Height="72" HorizontalAlignment="Left" Margin="337,397,0,0" x:Name="textBox1" Text="" Visibility="Collapsed" VerticalAlignment="Top" Width="460" />
+            <Image HorizontalAlignment="Left" Margin="55,2,0,675" Source="dotsbar.png" Stretch="Fill" Width="55"/>
+            
+            <Image Height="41" Source="icons/sinchronize-48 (1).png" Stretch="Fill" VerticalAlignment="Top" HorizontalAlignment="Right" Width="46" Margin="0,7,1,0"/>
+            <TextBox Height="72" Visibility="Collapsed"  HorizontalAlignment="Left" Margin="106,356,0,0" x:Name="inkpresentertextbox" Text="firstrun"  VerticalAlignment="Top" Width="460" TextChanged="inkpresentertextbox_TextChanged" />
+            <TextBox Height="72" Visibility="Collapsed" HorizontalAlignment="Left" Margin="106,503,0,0" x:Name="settingstextbox" Text="on" VerticalAlignment="Top" Width="460" TextChanged="settingstextbox_TextChanged" />
+            <InkPresenter Margin="0,0,0,-72" Visibility="Collapsed" x:Name="ink2" Background="{StaticResource PhoneSemitransparentBrush}"/>
+           
+            
+            
+            <Image Source="GMAIL MENU.png" Stretch="Fill" HorizontalAlignment="Left" Height="55" VerticalAlignment="Top" Width="55" Margin="-4,0,0,0" />
+            <Button Content="Button" Name="menubutton" Click="menubutton_Click" HorizontalAlignment="Left" Margin="0,2,0,0" VerticalAlignment="Top" BorderBrush="{StaticResource TransparentBrush}" Foreground="{StaticResource TransparentBrush}" Width="55" Height="53"/>
+            
+            <Button Content="Button" HorizontalAlignment="Right" VerticalAlignment="Top" Name="refreshbutton" Click="refreshbutton_Click" BorderBrush="{StaticResource TransparentBrush}" Foreground="{StaticResource TransparentBrush}" Width="46" Height="53" Margin="0,2,1,0" />
+            
+            <Button Content="" x:Name="inboxbutton" Click="inboxbutton_Click"  Margin="53,2,0,0" VerticalAlignment="Top" Height="55" BorderBrush="{StaticResource TransparentBrush}" Foreground="{StaticResource TransparentBrush}" HorizontalAlignment="Left" Width="57"/>
+            <InkPresenter Visibility="Collapsed" Height="170" Name="logandinbink" Margin="61,55,133,0" VerticalAlignment="Top" Background="#FFDFDFDF">
+                <Image HorizontalAlignment="Left" Height="34" Source="inbox-7-32.png" Stretch="Fill" VerticalAlignment="Top" Width="41" Canvas.Left="21" Canvas.Top="26"/>
+                <Image HorizontalAlignment="Left" Height="32" Source="logout-32.png" Stretch="Fill" VerticalAlignment="Top" Width="41" Canvas.Left="21" Canvas.Top="105" RenderTransformOrigin="0.561,1.125"/>
+                <Button Content="Inbox" Name="inboxshow"  Click="inboxshow_Click" FontSize="21.333" Height="62" Width="286" BorderBrush="{StaticResource TransparentBrush}" Foreground="Black" Canvas.Top="12"/>
+                <Button Content=" Logout" Name="logout" Click="logout_Click" FontSize="21.333" Height="66" Width="286" Canvas.Top="88" BorderBrush="{StaticResource TransparentBrush}" Foreground="Black"/>
+            </InkPresenter>
+
+
+            <Microsoft_Advertising_Mobile_UI:AdControl HorizontalAlignment="Left" Name="adControl1" AdRefreshed="adControl1_AdRefreshed" ErrorOccurred="adControl1_ErrorOccurred" ApplicationId="" AdUnitId="" Height="50" Margin="112,2,0,0" VerticalAlignment="Top" Width="320"/>
+            <InkPresenter x:Name="attchmentink" Visibility="Collapsed" Background="#FF333333" Height="328" VerticalAlignment="Top">
+                <TextBlock Canvas.Left="36" Foreground="White" TextWrapping="Wrap" Canvas.Top="8" FontSize="29.333" Width="415" Height="88"><Run Text="Send mail through Application "/><LineBreak/><Run Text="(supports Attachments (pics) )"/></TextBlock>
+                <TextBlock Canvas.Left="36" TextWrapping="Wrap" Foreground="White" Canvas.Top="96" FontSize="18.667" Width="415" Height="77" Text="If you want to send mail through application then click on allow, else click on cancel so that you can send mail through browser."/>
+                <Button Content="Allow" x:Name="allow" Foreground="White" BorderBrush="White" Canvas.Left="27" Canvas.Top="257" BorderThickness="2" Width="212" Click="allow_Click" />
+                <Button Content="cancel" x:Name="cancel" Foreground="White" BorderBrush="White" Canvas.Left="257" Canvas.Top="257" Width="194" BorderThickness="2" Click="cancel_Click" />
+                <TextBlock Canvas.Left="36" TextWrapping="Wrap" Text="Note : Please give your username and password on the page, you are going to be navigated. On that page you will see an icon with this symbol             and click on that ." Canvas.Top="179" Width="415" FontSize="16" Foreground="#FFD54433"/>
+                <Image Height="48" Margin="239,210,193,0" Source="appbar.feature.settings.rest.png" Stretch="Fill" VerticalAlignment="Top" RenderTransformOrigin="0.396,0.646"/>
+            </InkPresenter>
+            <InkPresenter Height="327" x:Name="ink1" Visibility="Collapsed" VerticalAlignment="Top" Background="#FF333333">
+                <TextBlock Canvas.Left="36" Foreground="White" TextWrapping="Wrap" Canvas.Top="8" FontSize="29.333" Width="415" Text="Attention   !!!"/>
+                <TextBlock Canvas.Left="36" Foreground="White" TextWrapping="Wrap" Canvas.Top="53" FontSize="18.667" Width="415" Height="103" Text="When you're Signing into your account, please signin in mobile version page so that desktop version is loaded in basic html page and your browsing speed will be increased"/>
+                <TextBlock Canvas.Left="36" Foreground="#FFD54433" TextWrapping="Wrap" Canvas.Top="162" FontSize="18"  Width="415" Text="Note : Always try to signout in mobile version page " Height="40" />
+                <HyperlinkButton Content="Back to Mobile version page" Foreground="White" Canvas.Left="8" Canvas.Top="203" Width="320" FontSize="21.333" Click="HyperlinkButton_Click" />
+                <Button Content="Allow" Foreground="White" BorderBrush="White" Canvas.Left="23" Canvas.Top="252" BorderThickness="2" Width="212" Click="Button_Click" />
+                <Button Content="cancel" Foreground="White" BorderBrush="White"  Canvas.Left="257" Canvas.Top="252" Width="194" BorderThickness="2" Click="Button_Click_1" />
+            </InkPresenter>
+            <ProgressBar Margin="-21,330,-17,335" VerticalAlignment="Stretch"  Grid.Row="1" x:Name="progress1" Opacity="1000000" IsIndeterminate="True" HorizontalAlignment="Stretch" Background="#FFFF5700" Foreground="#FFFF5700" Visibility="Collapsed"/>
+           
+        </Grid>
+    </Grid>
+ 
+    <!--Sample code showing usage of ApplicationBar-->
+    <!--<phone:PhoneApplicationPage.ApplicationBar>
+        <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True">
+            <shell:ApplicationBarIconButton IconUri="/Images/appbar_button1.png" Text="Button 1"/>
+            <shell:ApplicationBarIconButton IconUri="/Images/appbar_button2.png" Text="Button 2"/>
+            <shell:ApplicationBar.MenuItems>
+                <shell:ApplicationBarMenuItem Text="MenuItem 1"/>
+                <shell:ApplicationBarMenuItem Text="MenuItem 2"/>
+            </shell:ApplicationBar.MenuItems>
+        </shell:ApplicationBar>
+    </phone:PhoneApplicationPage.ApplicationBar>-->
+
+</phone:PhoneApplicationPage>

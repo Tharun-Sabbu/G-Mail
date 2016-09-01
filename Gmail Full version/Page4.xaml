@@ -1,0 +1,94 @@
+﻿<phone:PhoneApplicationPage 
+    x:Class="Handling_Facebook.Page1"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="Portrait" Orientation="Portrait"
+    mc:Ignorable="d" d:DesignHeight="768" d:DesignWidth="480"
+    shell:SystemTray.IsVisible="True">
+
+    <!--LayoutRoot is the root grid where all page content is placed-->
+    <Grid x:Name="LayoutRoot" Background="Transparent">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!--TitlePanel contains the name of the application and page title-->
+
+        <!--ContentPanel - place additional content here-->
+        <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
+        	<Grid.Background>
+        		<SolidColorBrush Color="{StaticResource PhoneTextCaretColor}"/>
+        	</Grid.Background>
+        	<Grid.ColumnDefinitions>
+        		<ColumnDefinition/>
+        		<ColumnDefinition Width="0*"/>
+        	</Grid.ColumnDefinitions>
+        	<TextBlock Margin="37,19,0,0" TextWrapping="Wrap" Text="G-Mail" VerticalAlignment="Top" FontSize="18.667" HorizontalAlignment="Left" Width="202">
+        		<TextBlock.Foreground>
+        			<SolidColorBrush Color="{StaticResource PhoneAccentColor}"/>
+        		</TextBlock.Foreground>
+        	</TextBlock>
+        	<TextBlock Margin="37,53,53,0" TextWrapping="Wrap" Text="ABOUT" VerticalAlignment="Top" FontSize="26.667" Foreground="White"/>
+        	<TextBlock Margin="37,166,-21,0" TextWrapping="Wrap" Text="By Tharun Reddy Sabbu" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
+            <TextBlock Margin="37,116,0,0" TextWrapping="Wrap" Text="G-Mail" VerticalAlignment="Top" FontSize="24" HorizontalAlignment="Left" Width="224">
+        		<TextBlock.Foreground>
+        			<SolidColorBrush Color="{StaticResource PhoneAccentColor}"/>
+        		</TextBlock.Foreground>
+        	</TextBlock>
+        	<TextBlock Margin="37,166,0,0" TextWrapping="Wrap" Text="By Tharun Reddy Sabbu" VerticalAlignment="Top" Foreground="White"/>
+        	<TextBlock Margin="39,244,0,0" TextWrapping="Wrap" Text="ver 1.0.0.0" VerticalAlignment="Top" FontSize="16" HorizontalAlignment="Left" Width="127">
+        		<TextBlock.Foreground>
+        			<SolidColorBrush Color="{StaticResource PhoneTextBoxSelectionForegroundColor}"/>
+        		</TextBlock.Foreground>
+        	</TextBlock>
+        	<TextBlock Margin="37,0,0,332" TextWrapping="Wrap" Text="Privacy Policy  :" VerticalAlignment="Bottom" FontSize="24" HorizontalAlignment="Left" Width="364">
+        		<TextBlock.Foreground>
+        			<SolidColorBrush Color="{StaticResource PhoneAccentColor}"/>
+        		</TextBlock.Foreground>
+        	</TextBlock>
+            <TextBlock Margin="37,310,0,0" Tap="TextBlock_Tap_1"  TextWrapping="Wrap" Text="Feedback : " VerticalAlignment="Top" FontSize="24" HorizontalAlignment="Left" Width="394">
+        		<TextBlock.Foreground>
+        			<SolidColorBrush Color="{StaticResource PhoneAccentColor}"/>
+        		</TextBlock.Foreground>
+        	</TextBlock>
+        	<TextBlock Margin="39,346,25,369" TextWrapping="Wrap" Text="This application uses browser interface of Gmail but it is not endorsed or certified by Google Inc." FontSize="16">
+        		<TextBlock.Foreground>
+        			<SolidColorBrush Color="{StaticResource PhoneTextBoxSelectionForegroundColor}"/>
+        		</TextBlock.Foreground>
+        	</TextBlock>
+        	<TextBlock Margin="37,0,25,69" TextWrapping="Wrap" FontSize="16" Height="258" VerticalAlignment="Bottom"><TextBlock.Foreground>
+        			<SolidColorBrush Color="{StaticResource PhoneTextBoxSelectionForegroundColor}"/>
+                </TextBlock.Foreground><Run Text="G-Mail is committed to maintain your privacy. Your data is yours and therefore only read by you. Neither do we read it, nor share with anyone else. "/><LineBreak/><Run/><LineBreak/><Run Text="This Privacy Policy does not apply to the practices of third parties that we do not own, control, or manage, including but not limited to any third party websites, services, applications, or businesses (“Third Party Services”)."/><LineBreak/><Run/><LineBreak/><Run Text="We don't read any of your information for the ads purpose."/><LineBreak/><Run Foreground="Red" Text=""/><LineBreak/><Run/><LineBreak/><Run/></TextBlock>
+            <TextBlock Margin="37,273,0,0" Tap="TextBlock_Tap" TextWrapping="Wrap" Text="Review this application" VerticalAlignment="Top" FontSize="21.333" HorizontalAlignment="Left" Width="364">
+        		<TextBlock.Foreground>
+        			<SolidColorBrush Color="{StaticResource PhoneAccentColor}"/>
+        		</TextBlock.Foreground>
+        	</TextBlock>
+            <TextBlock Margin="37,705,27,10" TextWrapping="Wrap" Text="Location services are used for ads purposes, we do not collect or share any of your information." FontSize="16">
+            	<TextBlock.Foreground>
+            		<SolidColorBrush Color="{StaticResource PhoneTextBoxSelectionForegroundColor}"/>
+            	</TextBlock.Foreground>
+            </TextBlock></Grid>
+    </Grid>
+    <!--     -->
+    <!--Sample code showing usage of ApplicationBar-->
+    <!--<phone:PhoneApplicationPage.ApplicationBar>
+        <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True">
+            <shell:ApplicationBarIconButton IconUri="/Images/appbar_button1.png" Text="Button 1"/>
+            <shell:ApplicationBarIconButton IconUri="/Images/appbar_button2.png" Text="Button 2"/>
+            <shell:ApplicationBar.MenuItems>
+                <shell:ApplicationBarMenuItem Text="MenuItem 1"/>
+                <shell:ApplicationBarMenuItem Text="MenuItem 2"/>
+            </shell:ApplicationBar.MenuItems>
+        </shell:ApplicationBar>
+    </phone:PhoneApplicationPage.ApplicationBar>-->
+
+</phone:PhoneApplicationPage>
